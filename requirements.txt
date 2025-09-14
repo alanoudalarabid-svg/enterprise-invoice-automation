@@ -1,0 +1,10 @@
+pdfplumber
+spacy
+pymongo
+mysql-connector-python
+python-dotenv
+nbconvert
+papermill
+jupyter
+flask
+gunicorn

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise Invoice Processing | Etisalat</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="header-content">
+        <h1 class="header-title">Enterprise Invoice Automation</h1>
+        <div class="nav-space"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="messages" id="messageContainer">
+          {% with messages = get_flashed_messages() %} {% if messages %} {% for
+          message in messages %}
+          <div
+            class="message {% if '✅' in message %}message-success{% else %}message-error{% endif %}"
+          >
+            <i
+              class="fas {% if '✅' in message %}fa-check-circle{% else %}fa-exclamation-triangle{% endif %}"
+            ></i>
+            {{ message }}
+            <button class="message-close">&times;</button>
+          </div>
+          {% endfor %} {% endif %} {% endwith %}
+        </div>
+
+        <div class="upload-box" id="uploadZone">
+          <i class="fas fa-file-invoice-dollar upload-icon"></i>
+          <h3>Process Etisalat Invoices</h3>
+          <p class="upload-instructions">
+            Drag and drop PDF files here or click below to upload
+          </p>
+
+          <form id="uploadForm" enctype="multipart/form-data">
+            <input
+              type="file"
+              name="file"
+              id="file-input"
+              accept=".pdf"
+              multiple
+            />
+            <label for="file-input" class="custom-upload-btn">
+              <i class="fas fa-cloud-upload-alt"></i> Choose Files
+            </label>
+          </form>
+
+          <div class="batch-controls" id="batchControls" style="display: none">
+            <div class="batch-info">
+              <div class="status-row">
+                <div class="status-item">
+                  <div class="status-number" id="totalFiles">0</div>
+                  <div>Total Invoices</div>
+                </div>
+                <div class="status-item">
+                  <div class="status-number" id="toBeProcessed">0</div>
+                  <div>To Be Processed</div>
+                </div>
+              </div>
+
+              <div class="status-row">
+                <div class="status-item">
+                  <div class="status-number" id="processedFiles">0</div>
+                  <div>Successfully Processed</div>
+                </div>
+                <div class="status-item">
+                  <div class="status-number" id="failedFiles">0</div>
+                  <div>Could Not Be Processed</div>
+                </div>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div
+                class="progress-bar"
+                id="progressBar"
+                style="width: 0%"
+              ></div>
+            </div>
+            <div class="button-group">
+              <button id="processBtn" class="process-btn">
+                <i class="fas fa-play"></i> Process Invoices
+              </button>
+              <button id="cancelBtn" class="cancel-btn">
+                <i class="fas fa-times"></i> Cancel
+              </button>
+              <button
+                id="startNewUploadBtn"
+                class="start-new-btn"
+                style="display: none"
+              >
+                <i class="fas fa-upload"></i> Start New Upload
+              </button>
+            </div>
+          </div>
+
+          <div id="loadingIndicator" class="loading-indicator">
+            <i class="fas fa-spinner fa-spin"></i> Processing invoices...
+          </div>
+
+          <p class="upload-instructions">
+            Supported format: PDF only (Max 10 files at once)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

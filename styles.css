@@ -1,0 +1,436 @@
+/* styles.css */
+/* ======================
+   VARIABLES & BASE STYLES
+   ====================== */
+   :root {
+    --primary-red: #e30613;
+    --corporate-blue: #0077b6;
+    --dark-gray: #2b2d42;
+    --light-gray: #8d99ae;
+    --background-gray: #f8f9fa;
+  }
+  
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: var(--background-gray);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* ======================
+     HEADER STYLES
+     ====================== */
+  .header {
+    background: linear-gradient(135deg, var(--dark-gray) 0%, var(--corporate-blue) 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-height: 100px;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 2rem;
+  }
+  
+  
+  .header-title {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .nav-space {
+    min-width: 200px;
+  }
+  
+  /* ======================
+     MAIN CONTAINER & CARD
+     ====================== */
+  .container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* ======================
+     UPLOAD SECTION
+     ====================== */
+  .upload-box {
+    border: 2px dashed var(--light-gray);
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    background: rgba(245, 245, 245, 0.3);
+  }
+
+  .upload-box.cancelling {
+    border-color: #ff9800;
+    background-color: rgba(255, 152, 0, 0.05);
+  }
+  
+  .upload-box:hover {
+    border-color: var(--corporate-blue);
+    background: rgba(0, 119, 182, 0.05);
+  }
+  
+  .highlight {
+    border-color: var(--primary-red) !important;
+    background-color: rgba(0, 119, 182, 0.1) !important;
+  }
+  
+  .upload-icon {
+    font-size: 2.5rem;
+    color: var(--corporate-blue);
+    margin-bottom: 1rem;
+  }
+  
+  .upload-instructions {
+    color: var(--light-gray);
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  
+  #file-input {
+    display: none;
+  }
+
+  .custom-upload-btn {
+    background: var(--primary-red);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+  
+  .custom-upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(227, 6, 19, 0.3);
+  }
+
+  .disabled-upload-label {
+    background: var(--light-gray);
+    color: white;
+    opacity: 1;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+    transform: none;
+    position: relative;
+  }
+  
+  .disabled-upload-label:hover {
+    box-shadow: none;
+    transform: none;
+  }
+  
+  .upload-hint {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark-gray);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .disabled-upload-label {
+    background: var(--light-gray);
+    color: white;
+    opacity: 1;
+    cursor: not-allowed;
+    /* pointer-events: none; ❌ REMOVE THIS LINE */
+    box-shadow: none;
+    transform: none;
+    position: relative;
+  }
+  
+
+  .disabled-upload-label::after {
+    content: none;
+  }
+
+  .upload-box, .batch-controls, .progress-container, .button-group {
+    transition: all 0.3s ease;
+  }
+
+  .btn-loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* ======================
+     MESSAGES & ALERTS
+     ====================== */
+  .messages {
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .message {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding-right: 30px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .message.fade-out {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-width: 0;
+    overflow: hidden;
+    transform: all 0.5s ease;
+  }
+
+  .message-success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #4caf50;
+  }
+  
+  .message-error {
+    background: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #ef5350;
+  }
+  
+  .message-close {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    padding: 0 0 0 10px;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  
+  .message-close:hover {
+    opacity: 0.8;
+  }
+
+  .message-warning {
+    background: #fff3e0;
+    color: #e65100;
+    border-left: 4px solid #ff9800;
+  }
+  
+  /* ======================
+     BATCH PROCESSING UI
+     ====================== */
+  .batch-controls {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+  }
+  
+  .batch-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .status-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .status-item {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 16px 20px;
+    border-radius: 12px;
+    width: 200px; /* Make all same size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0; /* Ensure consistent border */
+  }
+  
+  .status-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d50000;
+  }
+  
+  .button-group {
+    gap: 10px;
+    margin-top: 1rem;
+  }
+  
+  .process-btn {
+    background: var(--primary-red);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+  }
+  
+  .process-btn:hover {
+    background: #c00510;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(227, 6, 19, 0.3);
+  }
+  
+  .process-btn:disabled {
+    background: var(--light-gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .cancel-btn {
+    background: var(--light-gray);
+    color: var(--dark-gray);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .cancel-btn.start-new-mode {
+    background: var(--corporate-blue);
+    color: white;
+  }
+
+  .cancel-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .cancel-btn.start-new-mode:hover {
+    background: #0066a1;
+    box-shadow: 0 4px 8px rgba(0, 119, 182, 0.3);
+  }
+
+  .upload-box[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  /* ======================
+     PROGRESS BAR
+     ====================== */
+  .progress-container {
+    margin: 1rem 0;
+    background: rgba(0, 119, 182, 0.1);
+    border-radius: 8px;
+    height: 12px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: var(--corporate-blue);
+    border-radius: 8px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  
+
+  .progress-bar.completed {
+    background: #4CAF50;
+    animation: pulse-green 1.5s infinite;
+  }
+
+  @keyframes pulse-green {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+
+  /* ======================
+     LOADING INDICATOR
+     ====================== */
+  .loading-indicator {
+    display: none;
+    margin-top: 1rem;
+    color: var(--corporate-blue);
+    font-weight: 500;
+  }
+  
+  /* ======================
+     RESPONSIVE STYLES
+     ====================== */
+  @media (max-width: 768px) {
+    .container {
+      margin-top: -30px;
+    }
+  
+    .card {
+      padding: 1.5rem;
+    }
+    
+    .batch-info {
+      grid-template-columns: 1fr;
+    }
+
+    .status-row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .status-item {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .status-number {
+      font-size: 20px;
+    }
+  }
