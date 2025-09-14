@@ -1,0 +1,32 @@
+# Environment & secrets
+.env
+*.env
+secrets.json
+config.json
+
+# Python cache & build
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Mac system files
+.DS_Store
+
+# Logs
+*.log
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Node stuff
+node_modules/
+package-lock.json
